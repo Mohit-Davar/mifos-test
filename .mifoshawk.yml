@@ -1,0 +1,46 @@
+documentation:
+  enabled: true
+
+  documents:
+
+    - platform: gitbook
+      repo: "Mohit-Davar/gitbook-mifos"
+      path: "/getting-started"
+      audience: user
+      purpose: >
+        User documentation for the Owlog blogging platform.
+        Covers getting started, account creation,
+        email verification, signing in,
+        reading articles, engagement features,
+        profile management and troubleshooting.
+
+    - platform: readme
+      repo: "Mohit-Davar/readme-mifos"
+      path: "/docs/Docs"
+      audience: user
+      purpose: >
+        End-user documentation for the Owlog platform.
+        Covers onboarding and authentication
+
+    - platform: confluence
+      pageId: "7929869"
+      audience: user
+      purpose: >
+        End-user documentation for the Owlog platform.
+        Covers onboarding and authentication
+
+review:
+  model: gpt-5-mini
+
+  files:
+    include:
+      - "src/**"
+
+    exclude:
+      - "dist/**"
+      - "**/*.lock"
+
+  security:
+    dependencyFiles:
+      - package.json
+      - package-lock.json
