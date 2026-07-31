@@ -30,7 +30,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
 
-          docs-github-token: ${{ secrets.DOCS_GITHUB_TOKEN }}
+          docs-token: ${{ secrets.DOCS_GITHUB_TOKEN }}
 
           confluence-base-url: ${{ secrets.CONFLUENCE_BASE_URL }}
           confluence-username: ${{ secrets.CONFLUENCE_USERNAME }}
