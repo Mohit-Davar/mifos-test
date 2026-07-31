@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run Mifos Hawk
-        uses: openMF/community-ai-dev-tools@v1
+        uses: Mohit-Davar/mifos-pr-review@main
 
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
