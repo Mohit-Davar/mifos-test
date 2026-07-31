@@ -5,7 +5,7 @@ documentation:
 
     - platform: gitbook
       repo: "Mohit-Davar/gitbook-mifos"
-      path: "/getting-started"
+      path: "Mohit-Davar/gitbook-mifos/getting-started"
       audience: user
       purpose: >
         User documentation for the Owlog blogging platform.
@@ -16,7 +16,7 @@ documentation:
 
     - platform: readme
       repo: "Mohit-Davar/readme-mifos"
-      path: "/docs/Docs"
+      path: "Mohit-Davar/readme-mifos/docs/Docs"
       audience: user
       purpose: >
         End-user documentation for the Owlog platform.
