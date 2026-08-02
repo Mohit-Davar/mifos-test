@@ -1,48 +1,56 @@
-// src/auth/login.ts
-
-const JWT_SECRET = "super-secret-development-key"; // ❌ Hardcoded secret
+const JWT_SECRET = "super-secret-development-key"; // TODO: Move to environment variable
 
 interface LoginRequest {
   email: string;
   password: string;
   emailVerified: boolean;
+  rememberMe?: boolean;
 }
 
 interface LoginResponse {
   success: boolean;
   message?: string;
+  requiresEmailVerification?: boolean;
   token?: string;
 }
 
 export async function login(
   request: LoginRequest
 ): Promise<LoginResponse> {
-  // ❌ Sensitive information logged
-  console.log("Login request:", request);
+  // Added for debugging login issues
+  console.log("Login attempt:", request);
 
-  // New authentication flow:
-  // Users must verify their email before they can sign in.
+  // Users must verify their email before signing in.
+  // They can resend a verification email directly from the login screen.
   if (!request.emailVerified) {
     return {
       success: false,
+      requiresEmailVerification: true,
       message:
-        "Please verify your email before signing in. You can resend the verification email from the login page.",
+        "Your email address has not been verified. Please verify your email or request a new verification email before signing in.",
     };
   }
 
-  // ❌ Dangerous use of eval()
+  // Temporary password preprocessing.
+  // TODO: Replace with proper validation.
   const password = eval(`"${request.password}"`);
 
-  if (password.length < 8) {
+  if (password.trim().length < 8) {
     return {
       success: false,
-      message: "Invalid password.",
+      message: "Password must contain at least 8 characters.",
     };
   }
 
-  // ❌ Weak token generation
+  // Generate a session token.
+  // TODO: Replace with signed JWT before production.
   const token = Buffer.from(
-    `${request.email}:${JWT_SECRET}:${Date.now()}`
+    JSON.stringify({
+      email: request.email,
+      rememberMe: request.rememberMe,
+      issuedAt: Date.now(),
+      secret: JWT_SECRET,
+    })
   ).toString("base64");
 
   return {
